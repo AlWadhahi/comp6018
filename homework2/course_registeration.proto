@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+service CourseRegistration {
+  rpc AddCourse(AddCourseRequest) returns (AddCourseResponse);
+  rpc RegisterStudent(RegisterStudentRequest) returns (RegisterStudentResponse);
+  rpc ListCourses(ListCoursesRequest) returns (ListCoursesResponse);
+  rpc ListStudents(ListStudentsRequest) returns (ListStudentsResponse);
+}
+
+message AddCourseRequest {
+  string course_code = 1;
+  string course_title = 2;
+}
+
+message AddCourseResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message RegisterStudentRequest {
+  string course_code = 1;
+  string student_id = 2;
+  string student_name = 3;
+}
+
+message RegisterStudentResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ListCoursesRequest {
+}
+
+message ListCoursesResponse {
+  repeated Course courses = 1;
+}
+
+message ListStudentsRequest {
+  string course_code = 1;
+}
+
+message ListStudentsResponse {
+  repeated Student students = 1;
+  bool success = 2;
+  string message = 3;
+}
+
+message Course {
+  string course_code = 1;
+  string course_title = 2;
+}
+
+message Student {
+  string student_id = 1;
+  string student_name = 2;
+}
